@@ -1,0 +1,45 @@
+browserConfig:
+  driverEnum: CHROME
+
+
+environment:
+  prod:
+    appUrl: http://146.59.32.4
+    active: true
+    min_value_first_filter: $9.00
+    max_value_first_filter: $10.00
+    min_value_second_filter: $10.00
+    max_value_second_filter: $29.00
+    number_of_addition_to_cart: 3
+    number_of_random_add_random_product: 5
+    first_product_quantity: 5
+    state: Florida
+    country: Poland
+    payment_method_payment_page: bank wire
+    payment_order_history: Bank transfer
+    waitTime: 15
+    go_to_left: -10
+    go_to_right: 10
+
+  init:
+    appUrl: http://146.59.32.4
+    active: false
+    min_value_first_filter: $9.00
+    max_value_first_filter: $10.00
+    min_value_second_filter: $10.00
+    max_value_second_filter: $29.00
+    number_of_addition_to_cart: 3
+    number_of_random_add_random_product: 5
+    first_product_quantity: 5
+    state: Florida
+    country: Poland
+    payment_method_payment_page: bank wire
+    payment_order_history: Bank transfer
+    waitTime: 15
+
+
+
+
+
+
+
