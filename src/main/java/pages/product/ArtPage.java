@@ -1,5 +1,6 @@
 package pages.product;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,8 +26,12 @@ public class ArtPage extends BasePage {
     private WebElement rightSlider;
     @FindBy(css = ".faceted-slider p")
     private WebElement priceRange;
-    @FindBy(xpath = "//span[@class='price']")
-    private List<WebElement> displayedProductsPrice;
+//    @FindBy(xpath = "//span[@class='price']")
+//    private List<WebElement> displayedProductsPrice;
+
+    public List<WebElement> getDisplayedProductPrice(){
+        return driver.findElements(By.xpath("//span[@class='price']"));
+    }
     @FindBy(xpath = "//div[@id='_desktop_search_filters_clear_all']/button")
     private WebElement clearFilterBtn;
 
@@ -39,6 +44,7 @@ public class ArtPage extends BasePage {
         log.info("Category after click: " + menuPage.categories.get(i).getText());
         return this;
     }
+    public int pageProductAmount = getDisplayedProductPrice().size();
 
     public ArtPage firstPriceFilter(String properties, int offset) {
 
@@ -49,6 +55,7 @@ public class ArtPage extends BasePage {
             log.info(getTextFromElement(priceRange));
         }
         releaseMouse(rightSlider);
+        wait.until(c->getDisplayedProductPrice().size()<6);
         return this;
     }
 
@@ -61,26 +68,31 @@ public class ArtPage extends BasePage {
             log.info(getTextFromElement(priceRange));
         }
         releaseMouse(leftSlider);
+        wait.until(c->getDisplayedProductPrice().size()<6);
         return this;
+    }
+    public int amountAfterFiltr() {
+      return getDisplayedProductPrice().size();
     }
 
     public ArtPage countMatchedProducts(String properties) {
         List<String> products = new ArrayList<>();
-        for (int j = 0; j < displayedProductsPrice.size(); j++) {
+        for (int j = 0; j < getDisplayedProductPrice().size(); j++) {
             waitForPageLoaded();
-            waitToBeVisible(displayedProductsPrice.get(j));
-            products.add(displayedProductsPrice.get(j).getText());
-            log.info("Products: " + getTextFromElement(displayedProductsPrice.get(j)));
-            String value = displayedProductsPrice.get(j).getText();
+            waitToBeVisible(getDisplayedProductPrice().get(j));
+            products.add(getDisplayedProductPrice().get(j).getText());
+            log.info("Products: " + getTextFromElement(getDisplayedProductPrice().get(j)));
+            String value = getDisplayedProductPrice().get(j).getText();
             softAssert.assertThat(value.contains(properties));
         }
-        log.info("Number of matched products: " + displayedProductsPrice.size());
+        log.info("Number of matched products: " + getDisplayedProductPrice().size());
         return this;
     }
 
     public ArtPage clearFilters() {
         clickOnElement(clearFilterBtn);
         waitForPageLoaded();
+        wait.until(c->getDisplayedProductPrice().size()>3);
         return this;
     }
 }

@@ -1,6 +1,7 @@
 package tests;
 
 import base.Pages;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ public class FiltersTest extends Pages {
                 .checkCategories_AndSubcategories();
     }
 
+    @SneakyThrows
     @Test
     public void artCategories(){
         artPage
