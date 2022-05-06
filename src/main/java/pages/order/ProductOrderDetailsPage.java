@@ -41,7 +41,7 @@ public class ProductOrderDetailsPage extends BasePage {
     public Product newProductBuilder() {
         String productNameText = getTextFromElement(productName);
         highLightenerMethod(productPrice);
-        String productPriceText = getTextFromElement(productPrice).replace("$", "");
+        String productPriceText = productPrice.getText().replace("$", "");
         highLightenerMethod(productQuantity);
         String productQuantityText = getValueFromElement(productQuantity);
 
