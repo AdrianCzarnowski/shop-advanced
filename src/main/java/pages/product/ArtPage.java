@@ -47,7 +47,7 @@ public class ArtPage extends BasePage {
     public int pageProductAmount = getDisplayedProductPrice().size();
 
     public ArtPage firstPriceFilter(String properties, int offset) {
-
+        int amount = getDisplayedProductPrice().size();
         while (!priceRange.getText().endsWith(properties)) {
             waitForPageLoaded();
             clickAndHold(rightSlider);
@@ -55,11 +55,12 @@ public class ArtPage extends BasePage {
             log.info(getTextFromElement(priceRange));
         }
         releaseMouse(rightSlider);
-        wait.until(c->getDisplayedProductPrice().size()<6);
+        wait.until(c->getDisplayedProductPrice().size()<amount);
         return this;
     }
 
     public ArtPage secondPriceFilter(String properties, int offset) {
+        int amount = getDisplayedProductPrice().size();
 
         while (!priceRange.getText().startsWith(properties)) {
             waitForPageLoaded();
@@ -68,7 +69,7 @@ public class ArtPage extends BasePage {
             log.info(getTextFromElement(priceRange));
         }
         releaseMouse(leftSlider);
-        wait.until(c->getDisplayedProductPrice().size()<6);
+        wait.until(c->getDisplayedProductPrice().size()<amount);
         return this;
     }
     public int amountAfterFiltr() {
@@ -90,9 +91,10 @@ public class ArtPage extends BasePage {
     }
 
     public ArtPage clearFilters() {
+        int amount = getDisplayedProductPrice().size();
         clickOnElement(clearFilterBtn);
         waitForPageLoaded();
-        wait.until(c->getDisplayedProductPrice().size()>3);
+        wait.until(c->getDisplayedProductPrice().size()>amount);
         return this;
     }
 }
