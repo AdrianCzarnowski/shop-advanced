@@ -75,7 +75,7 @@ public class BasePage {
 
     public void clickOnElement(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        highLightenerMethod(element);
+//        highLightenerMethod(element);
         element.click();
     }
 
