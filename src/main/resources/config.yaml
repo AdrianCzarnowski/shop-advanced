@@ -8,7 +8,7 @@ environment:
     active: true
     min_value_first_filter: $9.00
     max_value_first_filter: $10.00
-    min_value_second_filter: $10.00
+    min_value_second_filter: $11.00
     max_value_second_filter: $29.00
     number_of_addition_to_cart: 3
     number_of_random_add_random_product: 5
@@ -26,7 +26,7 @@ environment:
     active: false
     min_value_first_filter: $9.00
     max_value_first_filter: $10.00
-    min_value_second_filter: $10.00
+    min_value_second_filter: $11.00
     max_value_second_filter: $29.00
     number_of_addition_to_cart: 3
     number_of_random_add_random_product: 5
