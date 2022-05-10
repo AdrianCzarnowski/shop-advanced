@@ -1,5 +1,6 @@
 package pages.product;
 
+import configuration.factory.FakeDataFactory;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,6 +37,11 @@ public class RandomProductPage extends BasePage {
     @FindBy(css = "h1")
     private WebElement bar;
 
+    @FindBy(css = ".product-message")
+    private WebElement customizationText;
+
+    @FindBy(xpath = "//button[@name='submitCustomizedData']")
+    private WebElement customizationSubmitBtn;
     public RandomProductPage(WebDriver driver) {
         super(driver);
     }
@@ -66,7 +72,14 @@ public class RandomProductPage extends BasePage {
     }
 
     public RandomProductPage clickAddToCartButton() {
-        clickOnElement(addToCartButton);
+        if (!addToCartButton.isEnabled()) {
+            customizationText.click();
+            sendKeys(customizationText, FakeDataFactory.getFakeEmail(), true);
+            clickOnElement(customizationSubmitBtn);
+            clickOnElement(addToCartButton);
+        } else {
+            clickOnElement(addToCartButton);
+        }
         return this;
     }
 

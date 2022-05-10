@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class BasketTest extends Pages {
 
     private static Logger log = LoggerFactory.getLogger("SearchResultTest.class");
@@ -44,7 +46,7 @@ public class BasketTest extends Pages {
                 .clickBasketBtn();
         basketPage
                 .checkTotalCost();
-        assert ((String.valueOf(Product.getAllOrderCost())).contains(basketPage.checkTotalCost()));
+        assertThat ((String.valueOf(Product.getAllOrderCost())).contains(basketPage.checkTotalCost()));
         log.info("Order value are the same");
 
         randomProductPage
